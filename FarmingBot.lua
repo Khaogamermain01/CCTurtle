@@ -24,16 +24,17 @@ while true do
             turtle.digDown()
             turtle.placeDown()
             turtle.forward()
-        else
-            print("I'm meant to move backwards and not be a pussy")
-            turtle.back()
-            -- if turned then
+            return
+        end
+        
+        print("I'm meant to move backwards and not be a pussy")
+        turtle.back()
+        -- if turned then
             --     turtle.turnLeft()
             --     turned = not turned
             -- else
             --     turtle.turnRight()
             --     turned = not turned
             -- end
-        end
     end 
 end
