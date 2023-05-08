@@ -24,7 +24,6 @@ while true do
             turtle.digDown()
             turtle.placeDown()
             turtle.forward()
-            return
         end
     else
         print("I'm meant to move backwards and not be a pussy")
