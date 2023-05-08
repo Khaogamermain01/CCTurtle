@@ -27,5 +27,7 @@ while true do
             turtle.placeDown()
             turtle.forward()
         end
+    else
+        turtle.back()
     end
 end
