@@ -18,9 +18,6 @@ end
 turned = true
 while true do
     local success, data = turtle.inspectDown()
-    print(success)
-    print(data.name)
-    print(data.state.age)
     if success then
         if data.name == "minecraft:wheat" then
             turtle.digDown()
