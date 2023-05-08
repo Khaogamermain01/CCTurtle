@@ -26,15 +26,15 @@ while true do
             turtle.forward()
             return
         end
-        
+    else
         print("I'm meant to move backwards and not be a pussy")
         turtle.back()
-        -- if turned then
-            --     turtle.turnLeft()
-            --     turned = not turned
-            -- else
-            --     turtle.turnRight()
-            --     turned = not turned
-            -- end
-    end 
+        if turned then
+            turtle.turnLeft()
+            turned = not turned
+        else
+            turtle.turnRight()
+            turned = not turned
+        end
+    end
 end
