@@ -1,5 +1,9 @@
--- Set the starting position of the turtle
+-- Set the starting position of the turtle using GPS
 local startX, startY, startZ = gps.locate()
+if not startX or not startY or not startZ then
+  print("Error: GPS could not locate starting position")
+  return
+end
 
 -- Define the dimensions of the wheat farm
 local farmWidth = 9
@@ -51,8 +55,3 @@ end
 -- Deposit the harvested wheat into the chest
 turtle.select(chestSlot)
 turtle.placeUp()
-
--- Return to the starting position
-turtle.back()
-turtle.turnRight()
-turtle.turnRight()
