@@ -18,22 +18,14 @@ end
 turned = true
 while true do
     local success, data = turtle.inspectDown()
-
+    print(success)
+    print(data.name)
+    print(data.state.age)
     if success then
         if data.name == "minecraft:wheat" then
             turtle.digDown()
             turtle.placeDown()
             turtle.forward()
-        end
-    else
-        print("I'm meant to move backwards and not be a pussy")
-        turtle.back()
-        if turned then
-            turtle.turnLeft()
-            turned = not turned
-        else
-            turtle.turnRight()
-            turned = not turned
         end
     end
 end
