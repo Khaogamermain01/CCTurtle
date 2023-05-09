@@ -2,6 +2,7 @@ local connURL = "wss://0.tcp.ap.ngrok.io:11744"
 local ws, err = http.websocket(connURL)
 
 if ws then
+    ws.send("Khao's Remote Turtle")
     while true do
         local msg = ws.receive()
         if msg == "forward" then
