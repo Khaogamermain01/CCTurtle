@@ -1,4 +1,4 @@
-local connURL = "wss://0.tcp.ap.ngrok.io:11744"
+local connURL = "ws://0.tcp.ap.ngrok.io:11744"
 local ws, err = http.websocket(connURL)
 
 if ws then
