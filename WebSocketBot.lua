@@ -6,13 +6,13 @@ if ws then
         local msg = ws.receive()
         if msg == "forward" then
             turtle.forward()
-        else if msg == "refuel" then
+        elseif msg == "refuel" then
             turtle.refuel()
-        else if msg == "back" then
+        elseif msg == "back" then
             turtle.back()
-        else if msg == "left" then
+        elseif msg == "left" then
             turtle.turnLeft()
-        else if msg == "right" then
+        elseif msg == "right" then
             turtle.turnRight()
         end
     end
