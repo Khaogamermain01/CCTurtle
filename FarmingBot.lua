@@ -61,6 +61,8 @@ for b = 1, numRows-1 do
 end
 turtle.turnLeft()
 
+os.sleep(2)
+
 local chest = peripheral.find("minecraft:chest")
 for a = 1, 27 do
   if not turtle.getItemCount(i) == 0 then
