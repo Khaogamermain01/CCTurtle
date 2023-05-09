@@ -3,8 +3,9 @@ local startX, startY, startZ = 0, 0, 0
 local currX, currY, currZ = startX, startY, startZ
 
 -- Define the length of the rows and the number of rows to harvest
-local rowLength = 10
-local numRows = 5
+local rowLength = 9
+local numRows = 9
+local crop = "minecraft:wheat"
 
 -- Define the age of wheat to harvest
 local harvestAge = 7
@@ -15,7 +16,7 @@ for row = 1, numRows do
   for i = 1, rowLength do
     -- Check if the current block is wheat and has the correct age
     local success, data = turtle.inspectDown()
-    if success and data.name == "minecraft:wheat" and data.state.age == harvestAge then
+    if success and data.name == crop and data.state.age == harvestAge then
       turtle.digDown()
       turtle.select(1)
       turtle.placeDown()
@@ -49,16 +50,35 @@ for row = 1, numRows do
 end
 
 -- Return to the starting position
-while currX > startX or currZ > startZ do
+-- Return to the starting position
+while currX ~= startX or currY ~= startY or currZ ~= startZ do
   if currZ > startZ then
+    -- Face north and move forward
+    turtle.turnRight()
     turtle.turnRight()
     turtle.forward()
-    turtle.turnRight()
     currZ = currZ - 1
+  elseif currZ < startZ then
+    -- Face south and move forward
+    turtle.forward()
+    currZ = currZ + 1
   elseif currX > startX then
+    -- Face west and move forward
     turtle.turnLeft()
     turtle.forward()
-    turtle.turnLeft()
     currX = currX - 1
+  elseif currX < startX then
+    -- Face east and move forward
+    turtle.turnRight()
+    turtle.forward()
+    currX = currX + 1
+  elseif currY > startY then
+    -- Move down
+    turtle.down()
+    currY = currY - 1
+  elseif currY < startY then
+    -- Move up
+    turtle.up()
+    currY = currY + 1
   end
 end
