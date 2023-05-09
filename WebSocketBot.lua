@@ -5,6 +5,7 @@ if ws then
     ws.send("Khao's Remote Turtle")
     while true do
         local msg = ws.receive()
+        print(msg)
         if msg == "forward" then
             turtle.forward()
         elseif msg == "refuel" then
