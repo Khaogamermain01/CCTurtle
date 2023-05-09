@@ -60,3 +60,13 @@ for b = 1, numRows-1 do
   turtle.forward()
 end
 turtle.turnLeft()
+
+local chest = peripheral.find("minecraft:chest")
+for a = 1, 27 do
+  if not turtle.getItemCount(i) == 0 then
+    turtle.select(a)
+    turtle.dropUp()
+  end
+end
+
+turtle.select(1)
