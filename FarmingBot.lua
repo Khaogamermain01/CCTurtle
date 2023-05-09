@@ -50,35 +50,13 @@ for row = 1, numRows do
 end
 
 -- Return to the starting position
--- Return to the starting position
-while currX ~= startX or currY ~= startY or currZ ~= startZ do
-  if currZ > startZ then
-    -- Face north and move forward
-    turtle.turnRight()
-    turtle.turnRight()
-    turtle.forward()
-    currZ = currZ - 1
-  elseif currZ < startZ then
-    -- Face south and move forward
-    turtle.forward()
-    currZ = currZ + 1
-  elseif currX > startX then
-    -- Face west and move forward
-    turtle.turnLeft()
-    turtle.forward()
-    currX = currX - 1
-  elseif currX < startX then
-    -- Face east and move forward
-    turtle.turnRight()
-    turtle.forward()
-    currX = currX + 1
-  elseif currY > startY then
-    -- Move down
-    turtle.down()
-    currY = currY - 1
-  elseif currY < startY then
-    -- Move up
-    turtle.up()
-    currY = currY + 1
-  end
+turtle.turnLeft()
+turtle.turnLeft()
+for a = 1, rowLength-1 do
+  turtle.forward()
 end
+turtle.turnLeft()
+for b = 1, numRows-1 do
+  turtle.forward()
+end
+turtle.turnLeft()
