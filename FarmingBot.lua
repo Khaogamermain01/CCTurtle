@@ -1,19 +1,12 @@
--- Set the starting position of the turtle using GPS
-local startX, startY, startZ = gps.locate()
-if not startX or not startY or not startZ then
-  print("Error: GPS could not locate starting position")
-  return
-end
+
 
 -- Define the dimensions of the wheat farm
 local farmWidth = 9
 local farmLength = 9
 
 -- Define the coordinates of the chest above the starting position
-local chestX, chestY, chestZ = startX, startY + 1, startZ
 
 -- Define the slot number of the chest item
-local chestSlot = 1
 
 -- Set the turtle to face forward
 turtle.forward()
@@ -53,5 +46,3 @@ for i = 1, farmWidth do
 end
 
 -- Deposit the harvested wheat into the chest
-turtle.select(chestSlot)
-turtle.placeUp()
