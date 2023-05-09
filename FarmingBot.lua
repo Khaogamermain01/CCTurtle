@@ -1,48 +1,64 @@
+-- Set up the turtle's starting position
+local startX, startY, startZ = 0, 0, 0
+local currX, currY, currZ = startX, startY, startZ
 
+-- Define the length of the rows and the number of rows to harvest
+local rowLength = 10
+local numRows = 5
 
--- Define the dimensions of the wheat farm
-local farmWidth = 9
-local farmLength = 9
+-- Define the age of wheat to harvest
+local harvestAge = 7
 
--- Define the coordinates of the chest above the starting position
-
--- Define the slot number of the chest item
-
--- Set the turtle to face forward
-turtle.forward()
-
--- Loop through each row of the farm
-for row = 1, farmLength do
-
+-- Start harvesting and planting
+for row = 1, numRows do
   -- Harvest the wheat in the current row
-  for col = 1, farmWidth do
-    turtle.digDown()
-    turtle.forward()
+  for i = 1, rowLength do
+    -- Check if the current block is wheat and has the correct age
+    local success, data = turtle.inspectDown()
+    if success and data.name == "minecraft:wheat" and data.state.age == harvestAge then
+      turtle.digDown()
+      turtle.select(1)
+      turtle.placeDown()
+    end
+    
+    -- Move to the next block
+    if i < rowLength then
+      turtle.forward()
+      currX = currX + 1
+    end
   end
+  
+  -- Move to the next row
+  if row < numRows then
+    if row % 2 == 1 then
+      -- If the row number is odd, turn left at the end of the row
+      turtle.turnLeft()
+      turtle.forward()
+      turtle.turnLeft()
+      currX = startX
+      currZ = currZ + 1
+    else
+      -- If the row number is even, turn right at the end of the row
+      turtle.turnRight()
+      turtle.forward()
+      turtle.turnRight()
+      currX = startX + rowLength - 1
+      currZ = currZ + 1
+    end
+  end
+end
 
-  -- Return to the start of the row
-  if row % 2 == 0 then
+-- Return to the starting position
+while currX > startX or currZ > startZ do
+  if currZ > startZ then
     turtle.turnRight()
     turtle.forward()
     turtle.turnRight()
-  else
+    currZ = currZ - 1
+  elseif currX > startX then
     turtle.turnLeft()
     turtle.forward()
     turtle.turnLeft()
+    currX = currX - 1
   end
-
 end
-
--- Return the turtle to its starting position
-turtle.turnRight()
-turtle.turnRight()
-for i = 1, farmLength do
-  turtle.forward()
-end
-turtle.turnRight()
-turtle.turnRight()
-for i = 1, farmWidth do
-  turtle.forward()
-end
-
--- Deposit the harvested wheat into the chest
